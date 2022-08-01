@@ -8,6 +8,7 @@ import { Readable } from "stream";
 import { HTTPError, ReadError, RequestError } from "./exceptions";
 import * as fileType from "file-type";
 import * as qs from "querystring";
+import HttpKeepAliveAgent, { HttpsAgent as HttpsKeepAliveAgent } from "agentkeepalive";
 
 const pkg = require("../package.json");
 
@@ -25,6 +26,8 @@ export default class HTTPClient {
     this.config = config;
     const { baseURL, defaultHeaders } = config;
     this.instance = axios.create({
+      httpAgent: new HttpKeepAliveAgent({ freeSocketTimeout: 30000 }),
+      httpsAgent: new HttpsKeepAliveAgent({ freeSocketTimeout: 30000 }),
       baseURL,
       headers: Object.assign({}, defaultHeaders, {
         "User-Agent": `${pkg.name}/${pkg.version}`,

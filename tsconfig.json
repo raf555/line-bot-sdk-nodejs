@@ -5,7 +5,8 @@
     "noImplicitAny": true,
     "outDir": "dist",
     "rootDirs": ["lib", "test"],
-    "declaration": true
+    "declaration": true,
+    "esModuleInterop": true
   },
   "include": [
     "lib/**/*.ts"

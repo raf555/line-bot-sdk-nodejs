@@ -1,5 +1,5 @@
 import { JSONParseError } from "./exceptions";
-import * as FormData from "form-data";
+import FormData from "form-data";
 
 export function toArray<T>(maybeArr: T | T[]): T[] {
   return Array.isArray(maybeArr) ? maybeArr : [maybeArr];
